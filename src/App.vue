@@ -21,4 +21,6 @@ export default defineComponent({
   </div>
 </template>
 
-<style scoped></style>
+<style lang="scss">
+@use "./assets/main.scss";
+</style>
