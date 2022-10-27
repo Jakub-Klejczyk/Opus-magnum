@@ -3,7 +3,7 @@ import { defineComponent } from "vue";
 import Navbar from "../components/Navbar.vue";
 
 export default defineComponent({
-  name: "HomeView",
+  name: "CartView",
   components: { Navbar },
 });
 </script>

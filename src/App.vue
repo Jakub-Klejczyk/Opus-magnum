@@ -8,17 +8,18 @@ export default defineComponent({
 </script>
 
 <template>
-  <div>
-    <header>
+  <!-- <div> -->
+  <!-- <header>
       <div class="wrapper">
         <nav>
           <RouterLink to="/">Home</RouterLink>
+          <RouterLink to="/login">Login</RouterLink>
         </nav>
       </div>
-    </header>
+    </header> -->
 
-    <RouterView />
-  </div>
+  <RouterView />
+  <!-- </div> -->
 </template>
 
 <style lang="scss">

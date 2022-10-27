@@ -1,9 +1,25 @@
-$primary: grey;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap");
 
-.wrapper {
-  background-color: $primary;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
 }
 
-body {
-  color: red;
+$dark-purple: rgba(53, 47, 85, 1);
+$light-purple: rgba(95, 82, 164, 1);
+$white: rgba(245, 249, 252, 1);
+
+@mixin btn {
+  cursor: pointer;
+  border: none;
+  background-color: $light-purple;
+  color: $white;
+  padding: 0.8rem;
+  border-radius: 6px;
+  &:hover {
+    background-color: $dark-purple;
+    transition-duration: 0.4s;
+  }
 }
