@@ -1,6 +1,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { RouterLink } from "vue-router";
+import { mapActions, mapGetters } from "vuex";
 
 export default defineComponent({
   name: "Navbar",
@@ -8,6 +9,8 @@ export default defineComponent({
     return {};
   },
   methods: {
+    ...mapActions(["logOut"]),
+    ...mapGetters(["getUser"]),
     toggleSidebar() {
       const hamburger: SVGElement | null = document.querySelector(".hamburger");
       hamburger?.classList.toggle("active-hamburger");
@@ -29,20 +32,24 @@ export default defineComponent({
           <RouterLink class="link" to="/">Strona główna</RouterLink>
         </li>
         <li class="nav-elem">
+          <RouterLink class="link" to="/products">Portale</RouterLink>
+        </li>
+        <li class="nav-elem">
           <RouterLink class="link" to="/terms">Regulamin</RouterLink>
         </li>
         <li class="nav-elem">
           <RouterLink class="link" to="/">Kontakt</RouterLink>
         </li>
-        <li class="nav-elem">
+        <li class="nav-elem" v-if="!getUser()">
           <RouterLink class="link" to="/login">Logowanie</RouterLink>
         </li>
-        <li class="nav-elem">
+        <li class="nav-elem" v-if="!getUser()">
           <RouterLink class="link" to="/registration">Rejestracja</RouterLink>
         </li>
         <li class="nav-elem">
           <RouterLink class="link" to="/cart">Koszyk</RouterLink>
         </li>
+        <li @click="logOut" class="nav-elem" v-if="getUser()">Wyloguj</li>
       </ul>
     </nav>
     <font-awesome-icon
@@ -58,11 +65,12 @@ export default defineComponent({
 
 nav {
   width: 100vw;
-  height: 7rem;
+  height: 14vh;
   display: flex;
   padding: 1rem;
   justify-content: space-between;
   align-items: center;
+  background-color: $white;
   box-shadow: $light-purple 0px 4px 10px;
 }
 
@@ -79,11 +87,24 @@ nav {
 
 .nav-elem {
   list-style: none;
+
   .link {
     text-decoration: none;
     font-size: 1.1rem;
     color: $dark-purple;
     font-weight: 700;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &:last-child {
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: $dark-purple;
+    font-weight: 700;
+    cursor: pointer;
   }
 }
 
@@ -119,7 +140,8 @@ nav {
       display: flex;
       align-items: center;
       justify-content: center;
-      .link {
+      .link,
+      &:last-child {
         color: white;
       }
     }

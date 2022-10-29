@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-import { mapActions, mapGetters } from "vuex";
+import { mapActions } from "vuex";
 import { RouterLink } from "vue-router";
 import GoogleButton from "./GoogleButton.vue";
 
@@ -94,6 +94,7 @@ export default defineComponent({
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 2rem;
+  background-color: $white;
 }
 
 .form {
@@ -119,6 +120,7 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
+
   .form-elem {
     display: flex;
     flex-direction: column;
@@ -130,6 +132,7 @@ form {
       border-radius: 6px;
       border: 1px solid $dark-purple;
       max-width: 90%;
+      background-color: $white;
     }
     .btn {
       @include btn;

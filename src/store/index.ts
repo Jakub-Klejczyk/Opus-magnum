@@ -1,5 +1,5 @@
 import { createStore } from "vuex";
-import { auth, provider } from "../firebase/config";
+import { auth, provider, emailsRef, portalsRef } from "../firebase/config";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -7,8 +7,10 @@ import {
   onAuthStateChanged,
   signInWithPopup,
 } from "firebase/auth";
+import { addDoc } from "firebase/firestore";
 import axios from "axios";
 import type User from "@/types/User";
+import type Portal from "@/types/Portal";
 import router from "@/router";
 
 const store = createStore({
@@ -22,6 +24,9 @@ const store = createStore({
     },
     setAuthIsReady(state, payload: boolean) {
       state.authIsReady = payload;
+    },
+    setMsg(state, payload) {
+      console.log(payload);
     },
   },
   actions: {
@@ -60,6 +65,30 @@ const store = createStore({
     async logOut({ commit }) {
       await signOut(auth);
       commit("setUser", null);
+    },
+    async addMsg({ commit }, email) {
+      const msg = await addDoc(emailsRef, {
+        company: email.company,
+        content: email.content,
+        email: email.email,
+        tel: email.tel,
+        title: email.title,
+      });
+      if (msg) {
+        commit("setMsg", email);
+      }
+    },
+  },
+  getters: {
+    getHighlightedProducts(): Portal[] {
+      return [
+        { id: 1, portal: "purple", place: "Floryda", price: 2000 },
+        { id: 2, portal: "green", place: "Alpy", price: 3000 },
+        { id: 3, portal: "blue", place: "Błatyk", price: 5000 },
+      ];
+    },
+    getUser(store) {
+      return store.currentUser;
     },
   },
 });
