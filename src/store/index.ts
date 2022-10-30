@@ -7,16 +7,20 @@ import {
   onAuthStateChanged,
   signInWithPopup,
 } from "firebase/auth";
-import { addDoc } from "firebase/firestore";
-import axios from "axios";
+import { addDoc, getDocs } from "firebase/firestore";
 import type User from "@/types/User";
 import type Portal from "@/types/Portal";
 import router from "@/router";
+import type Msg from "../types/Msg";
+
+import Floryda from "../assets/brand/Floryda.png";
 
 const store = createStore({
   state: {
     currentUser: null as null | User,
     authIsReady: false,
+    portals: [] as Portal[],
+    portalsCart: [] as Portal[],
   },
   mutations: {
     setUser(state, user: User) {
@@ -25,8 +29,14 @@ const store = createStore({
     setAuthIsReady(state, payload: boolean) {
       state.authIsReady = payload;
     },
-    setMsg(state, payload) {
-      console.log(payload);
+    setPortals(state, portals) {
+      state.portals = portals;
+    },
+    setPortalsCart(state, portal) {
+      state.portalsCart.unshift(portal);
+    },
+    delFromCart(state, portal) {
+      state.portalsCart = portal;
     },
   },
   actions: {
@@ -73,22 +83,59 @@ const store = createStore({
         email: email.email,
         tel: email.tel,
         title: email.title,
+      } as Msg);
+    },
+    async getPortals({ commit }) {
+      const portals = await getDocs(portalsRef);
+      let allPortals: Portal[] = [];
+      portals.forEach((res) => {
+        const portal = res.data();
+        allPortals.push({
+          id: res.id,
+          portal: portal.portal,
+          place: portal.place,
+          price: portal.price,
+          img: portal.place,
+        });
       });
-      if (msg) {
-        commit("setMsg", email);
-      }
+
+      commit("setPortals", allPortals);
     },
   },
   getters: {
-    getHighlightedProducts(): Portal[] {
-      return [
-        { id: 1, portal: "purple", place: "Floryda", price: 2000 },
-        { id: 2, portal: "green", place: "Alpy", price: 3000 },
-        { id: 3, portal: "blue", place: "Błatyk", price: 5000 },
-      ];
+    getHighlightedProducts(store): Portal[] {
+      let highlighterPortal: Portal[] = [];
+
+      for (let i = 0; i < 3; i++) {
+        let random: Portal =
+          store.portals[Math.floor(Math.random() * store.portals.length)];
+
+        if (!highlighterPortal.includes(random)) {
+          highlighterPortal.push(random);
+        } else {
+          random =
+            store.portals[Math.floor(Math.random() * store.portals.length)];
+          highlighterPortal.push(random);
+        }
+      }
+
+      return highlighterPortal;
+    },
+    getCart(state): Portal[] {
+      return state.portalsCart;
+    },
+    getCartTotalPrice(store) {
+      let sum: number = 0;
+      store.portalsCart.forEach((portal) => {
+        sum += portal.price;
+      });
+      return sum;
     },
     getUser(store) {
       return store.currentUser;
+    },
+    displayPortals(store) {
+      return store.portals;
     },
   },
 });

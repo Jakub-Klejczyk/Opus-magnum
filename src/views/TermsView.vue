@@ -1,26 +1,26 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import Navbar from "../components/Navbar.vue";
+import Footer from "../components/Footer.vue";
 
 export default defineComponent({
   name: "TermsView",
-  components: { Navbar },
+  components: { Navbar, Footer },
 });
 </script>
 
 <template>
-  <div>
-    <Navbar />
-    <section>
-      <h1>Regulamin strony</h1>
-      <h2>§1</h2>
-      <p>
-        1. Zobowiązuje się podzielić swoją opinią o projekcie na adres mailowy
-        <span>jakub.klejczyk16@gmail.com</span> lub za pomocą formularza
-        kontaktowanego umieszczonego na stronie głównej. ;)
-      </p>
-    </section>
-  </div>
+  <Navbar />
+  <section>
+    <h1>Regulamin strony</h1>
+    <h2>§1</h2>
+    <p>
+      1. Zobowiązuje się podzielić swoją opinią o projekcie na adres mailowy
+      <span>jakub.klejczyk16@gmail.com</span> lub za pomocą formularza
+      kontaktowanego umieszczonego na stronie głównej. ;)
+    </p>
+  </section>
+  <Footer class="footer" />
 </template>
 
 <style scoped lang="scss">
@@ -40,5 +40,9 @@ span {
 }
 h1 {
   margin-top: 2rem;
+}
+
+.footer {
+  position: absolute;
 }
 </style>

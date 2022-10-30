@@ -74,7 +74,7 @@ export default defineComponent({
 
 <template>
   <section class="container">
-    <h2>Skontaktuj się z nami</h2>
+    <h2 id="contact">Skontaktuj się z nami</h2>
     <form @submit.prevent="onSubmit">
       <div class="form-elem">
         <label for="email">Twój e-mail</label>

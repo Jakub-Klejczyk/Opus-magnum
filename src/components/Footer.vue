@@ -24,6 +24,9 @@ footer {
   background-color: $light-purple;
   text-align: center;
   padding-block: 4rem;
+  position: relative;
+  bottom: 0%;
+  width: 100vw;
 }
 
 p:first-child {

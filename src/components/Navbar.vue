@@ -26,7 +26,7 @@ export default defineComponent({
 <template>
   <div>
     <nav>
-      <div class="img"></div>
+      <img class="img" src="../assets/brand/logo.png" alt="logo Portal Shop" />
       <ul class="container">
         <li class="nav-elem">
           <RouterLink class="link" to="/">Strona główna</RouterLink>
@@ -36,9 +36,6 @@ export default defineComponent({
         </li>
         <li class="nav-elem">
           <RouterLink class="link" to="/terms">Regulamin</RouterLink>
-        </li>
-        <li class="nav-elem">
-          <RouterLink class="link" to="/">Kontakt</RouterLink>
         </li>
         <li class="nav-elem" v-if="!getUser()">
           <RouterLink class="link" to="/login">Logowanie</RouterLink>
@@ -77,7 +74,6 @@ nav {
 .img {
   width: 5rem;
   height: 5rem;
-  background-color: green;
 }
 .container {
   display: flex;

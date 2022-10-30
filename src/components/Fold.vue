@@ -12,7 +12,7 @@ export default defineComponent({
 
 <template>
   <section class="fold">
-    <img src="" alt="Portal Shop" />
+    <img src="../assets/brand/logo1.png" alt="Portal Shop" />
     <div class="text">
       <h1>Portal Shop</h1>
       <h3>Twój portal do marzeń!</h3>
@@ -31,7 +31,6 @@ export default defineComponent({
   align-items: center;
 }
 img {
-  background-color: red;
   width: 26rem;
   height: 26rem;
 }

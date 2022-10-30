@@ -5,6 +5,8 @@ import RegistrationView from "../views/RegistrationView.vue";
 import TermsView from "../views/TermsView.vue";
 import CartView from "../views/CartView.vue";
 import ProductsView from "../views/ProductsView.vue";
+import EndView from "../views/EndView.vue";
+import PageNotFoundView from "../views/PageNotFoundView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,6 +40,16 @@ const router = createRouter({
       path: "/products",
       name: "products",
       component: ProductsView,
+    },
+    {
+      path: "/end",
+      name: "end",
+      component: EndView,
+    },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "page-not-found",
+      component: PageNotFoundView,
     },
     // {
     //   path: '/about',

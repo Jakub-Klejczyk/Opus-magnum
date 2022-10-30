@@ -1,21 +1,28 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import type Portal from "@/types/Portal";
 
 export default defineComponent({
   name: "HighlightedProducts",
   data() {
     return {
-      //  set type
       portals: [] as Portal[],
+      loaded: false,
     };
   },
   methods: {
     ...mapGetters(["getHighlightedProducts"]),
+    ...mapActions(["getPortals"]),
+    getImgUrl(place: string) {
+      return `../assets/brand/${place}.png`;
+    },
   },
   mounted() {
-    this.portals = this.getHighlightedProducts();
+    this.getPortals().then(() => {
+      this.portals = this.getHighlightedProducts();
+      this.loaded = true;
+    });
   },
 });
 </script>
@@ -23,9 +30,12 @@ export default defineComponent({
 <template>
   <div class="section">
     <h2 class="title">Nasze najlepsze portale!</h2>
-    <section class="container">
+    <section class="container" v-if="loaded">
       <div class="card" v-for="portal in portals" :key="portal.id">
-        <img src="" :alt="portal.place" />
+        <img
+          :src="'../assets/brand/' + portal.place + '.png'"
+          :alt="portal.place"
+        />
         <div class="text">
           <h3>{{ portal.place }}</h3>
           <p>Cena: {{ portal.price }} zł</p>
@@ -52,7 +62,7 @@ export default defineComponent({
 .container {
   padding-block: 4rem;
   display: grid;
-  grid-template-columns: repeat(3, 18rem);
+  grid-template-columns: repeat(auto-fit, 18rem);
   grid-template-rows: auto;
   gap: 6rem;
   justify-content: center;
@@ -61,17 +71,5 @@ export default defineComponent({
 
 .card {
   @include card;
-}
-
-@media (max-width: 1100px) {
-  .container {
-    grid-template-columns: repeat(2, 18rem);
-  }
-}
-
-@media (max-width: 750px) {
-  .container {
-    grid-template-columns: repeat(1, 18rem);
-  }
 }
 </style>
