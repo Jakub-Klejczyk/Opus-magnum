@@ -30,6 +30,7 @@ export default defineComponent({
   align-items: center;
   background-color: #4285f4;
   border: 1px solid #4285f4;
+  cursor: pointer;
 
   img {
     width: 45px;

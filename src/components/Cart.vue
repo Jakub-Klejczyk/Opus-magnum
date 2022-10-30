@@ -34,8 +34,8 @@ export default defineComponent({
     <h2 v-if="cartPortals.length < 1">Brak produktów w koszyku</h2>
     <h2 v-else>
       Koszyk
-      <span v-if="getUser()"
-        >użytkownika {{ getUser().displayName || getUser().email }}</span
+      <span v-if="getUser()">
+        użytkownika {{ getUser().displayName || getUser().email }}</span
       >:
     </h2>
 
@@ -108,7 +108,6 @@ li {
   img {
     width: 4rem;
     height: 4rem;
-    background-color: red;
   }
 }
 

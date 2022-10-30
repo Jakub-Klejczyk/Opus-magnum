@@ -29,6 +29,7 @@ export default defineComponent({
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  animation: appear 0.6s ease-in;
 }
 img {
   width: 26rem;
@@ -49,6 +50,15 @@ h3 {
 @media (max-width: 1100px) {
   img {
     display: none;
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 </style>

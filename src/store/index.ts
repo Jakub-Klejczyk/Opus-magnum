@@ -95,7 +95,7 @@ const store = createStore({
           portal: portal.portal,
           place: portal.place,
           price: portal.price,
-          img: portal.place,
+          img: "../assets/brand/" + portal.place + ".png",
         });
       });
 
