@@ -2,11 +2,14 @@
 import { defineComponent } from "vue";
 import { RouterLink } from "vue-router";
 import { mapActions, mapGetters } from "vuex";
+import store from "../store/index";
 
 export default defineComponent({
   name: "Navbar",
   data() {
-    return {};
+    return {
+      count: 0,
+    };
   },
   methods: {
     ...mapActions(["logOut"]),
@@ -24,13 +27,24 @@ export default defineComponent({
       body?.classList.toggle("disable-scroll");
     },
   },
+  computed: {
+    countCart() {
+      return store.state.portalsCart.length;
+    },
+  },
+  watch: {
+    countCart(newVal, oldVal) {},
+  },
 });
 </script>
 
 <template>
   <div>
     <nav>
-      <img class="img" src="../assets/brand/logo.png" alt="logo Portal Shop" />
+      <RouterLink class="link" to="/"
+        ><img class="img" src="../assets/brand/logo.png" alt="logo Portal Shop"
+      /></RouterLink>
+
       <ul class="container">
         <li class="nav-elem">
           <RouterLink class="link" to="/">Strona główna</RouterLink>
@@ -47,7 +61,10 @@ export default defineComponent({
         <li class="nav-elem" v-if="!getUser()">
           <RouterLink class="link" to="/registration">Rejestracja</RouterLink>
         </li>
-        <li class="nav-elem">
+        <li
+          :class="countCart > 0 ? 'nav-elem cart' : 'nav-elem'"
+          :data-count="countCart"
+        >
           <RouterLink class="link" to="/cart">Koszyk</RouterLink>
         </li>
         <li @click="logOut" class="nav-elem" v-if="getUser()">Wyloguj</li>
@@ -106,6 +123,21 @@ nav {
     font-weight: 700;
     cursor: pointer;
   }
+}
+
+.cart::after {
+  content: attr(data-count);
+  position: relative;
+  top: -3rem;
+  right: -4rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: $light-purple;
+  color: white;
 }
 
 .hamburger {

@@ -2,7 +2,7 @@
 
 Projekt stworzony w celu nauki technologii Front-endowych. Sklep z portalami
 
-Wersja live: []
+Wersja live: [https://portal-shop-project.netlify.app/]
 
 ## Funkcjonalności projektu
 
