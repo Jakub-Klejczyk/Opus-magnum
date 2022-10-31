@@ -1,40 +1,49 @@
-# opus-magnum
+# Portal Shop
 
-This template should help get you started developing with Vue 3 in Vite.
+Projekt stworzony w celu nauki technologii Front-endowych. Sklep z portalami
 
-## Recommended IDE Setup
+Wersja live: []
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Funkcjonalności projektu
 
-## Type Support for `.vue` Imports in TS
+Użytkownik może się:
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+- zarejestrować konto,
+- zalogować się do istniejącego konta,
+- dodać produkty do koszyka
+- usunać produkty z koszyka
+- przesłać wiadomość przez formularz kontaktowy
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+Podstrony:
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+- strona główna
+- strona z produktami
+- strona z regulaminem
+- strona logowania
+- strona rejestracji
+- strona z widokiem koszyka
+- strona końcowa
+- strona PageNotFound
 
-## Customize configuration
+## Wykorzystane technologie
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- Vue
+- TypeScript
+- Vuex
+- Vue Router
+- Firebase
+- Scss
 
-## Project Setup
+## Uruchamianie aplikacji z poziomu kodu
+
+Po otwarciu repozytorium w edytorze należy w terminalu wpisać
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+następnie
 
 ```sh
 npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
 ```

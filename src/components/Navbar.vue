@@ -11,6 +11,7 @@ export default defineComponent({
   methods: {
     ...mapActions(["logOut"]),
     ...mapGetters(["getUser"]),
+
     toggleSidebar() {
       const hamburger: SVGElement | null = document.querySelector(".hamburger");
       hamburger?.classList.toggle("active-hamburger");
@@ -18,6 +19,9 @@ export default defineComponent({
       const sidebar: HTMLDivElement | null =
         document.querySelector(".container");
       sidebar?.classList.toggle("active-container");
+
+      const body: HTMLBodyElement | null = document.querySelector("body");
+      body?.classList.toggle("disable-scroll");
     },
   },
 });
@@ -112,6 +116,12 @@ nav {
   z-index: 2;
   margin-top: 2rem;
   margin-right: 2rem;
+}
+
+.disable-scroll {
+  margin: 0;
+  height: 200%;
+  overflow-y: hidden;
 }
 
 @media (max-width: 1000px) {

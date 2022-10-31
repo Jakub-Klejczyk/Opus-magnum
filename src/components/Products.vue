@@ -2,7 +2,7 @@
 import { defineComponent } from "vue";
 import { RouterLink } from "vue-router";
 import type Portal from "@/types/Portal";
-import { mapActions, mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default defineComponent({
   name: "Product",
@@ -19,7 +19,6 @@ export default defineComponent({
       this.sortedPortals = this.portals.filter((elem) => {
         return elem.portal === color;
       });
-      console.log(this.sortedPortals);
     },
     displayAll() {
       this.sortedPortals = this.portals;
@@ -49,7 +48,7 @@ export default defineComponent({
     </div>
     <div class="products">
       <div class="card" v-for="portal in sortedPortals" :key="portal.id">
-        <img src="" :alt="portal.place" />
+        <img :src="portal.img" :alt="portal.place" />
         <div class="text">
           <h3>{{ portal.place }}</h3>
           <p>Cena: {{ portal.price }} zł</p>

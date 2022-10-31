@@ -13,8 +13,6 @@ import type Portal from "@/types/Portal";
 import router from "@/router";
 import type Msg from "../types/Msg";
 
-import Floryda from "../assets/brand/Floryda.png";
-
 const store = createStore({
   state: {
     currentUser: null as null | User,
@@ -95,7 +93,7 @@ const store = createStore({
           portal: portal.portal,
           place: portal.place,
           price: portal.price,
-          img: "../assets/brand/" + portal.place + ".png",
+          img: "/src/assets/brand/" + portal.place + ".png",
         });
       });
 

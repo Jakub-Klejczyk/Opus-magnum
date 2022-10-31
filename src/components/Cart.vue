@@ -45,7 +45,7 @@ export default defineComponent({
         :key="portal.id"
         :style="{ 'border-color': portal.portal }"
       >
-        <img src="" :alt="portal.place" />
+        <img :src="portal.img" :alt="portal.place" />
         <p>{{ portal.place }}</p>
         <p>{{ portal.price }} zł</p>
         <button @click="delPortal(portal.id)">Usuń</button>

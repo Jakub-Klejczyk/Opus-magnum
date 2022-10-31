@@ -8,20 +8,9 @@ export default defineComponent({
 </script>
 
 <template>
-  <!-- <div> -->
-  <!-- <header>
-      <div class="wrapper">
-        <nav>
-          <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/login">Login</RouterLink>
-        </nav>
-      </div>
-    </header> -->
-
   <RouterView />
-  <!-- </div> -->
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 @use "./assets/main.scss";
 </style>
