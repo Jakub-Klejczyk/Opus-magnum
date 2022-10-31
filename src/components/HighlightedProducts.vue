@@ -36,7 +36,7 @@ export default defineComponent({
       <div class="card" v-for="portal in portals" :key="portal.id">
         <img
           :src="
-            'https://portal-shop-project.netlify.app/assets/' +
+            'https://portal-shop-project.netlify.app/src/assets/' +
             portal.place +
             '.png'
           "
