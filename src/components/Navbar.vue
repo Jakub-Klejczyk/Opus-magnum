@@ -67,7 +67,9 @@ export default defineComponent({
         >
           <RouterLink class="link" to="/cart">Koszyk</RouterLink>
         </li>
-        <li @click="logOut" class="nav-elem" v-if="getUser()">Wyloguj</li>
+        <li @click="logOut" class="nav-elem logout" v-if="getUser()">
+          Wyloguj
+        </li>
       </ul>
     </nav>
     <font-awesome-icon
@@ -100,6 +102,7 @@ nav {
   display: flex;
   width: 70%;
   justify-content: space-evenly;
+  align-items: center;
 }
 
 .nav-elem {
@@ -116,21 +119,26 @@ nav {
     align-items: center;
     justify-content: center;
   }
-  &:last-child {
-    text-decoration: none;
-    font-size: 1.1rem;
-    color: $dark-purple;
-    font-weight: 700;
-    cursor: pointer;
-  }
 }
 
+.logout {
+  text-decoration: none;
+  font-size: 1.1rem;
+  color: $dark-purple;
+  font-weight: 700;
+  cursor: pointer;
+}
+.cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .cart::after {
   content: attr(data-count);
   position: relative;
-  top: -3rem;
-  right: -4rem;
-  width: 1.6rem;
+  top: -0.75rem;
+  right: -0.75rem;
+  width: 2.2rem;
   height: 1.6rem;
   display: flex;
   align-items: center;

@@ -3,12 +3,15 @@ import { defineComponent } from "vue";
 import { mapActions, mapGetters } from "vuex";
 import type Portal from "@/types/Portal";
 
+import Denmark from "../assets/brand/Denmark.png";
+
 export default defineComponent({
   name: "HighlightedProducts",
   data() {
     return {
       portals: [] as Portal[],
       loaded: false,
+      Denmark: Denmark,
     };
   },
   methods: {
@@ -17,6 +20,8 @@ export default defineComponent({
   },
   mounted() {
     this.getPortals().then(() => {
+      console.log(this.getHighlightedProducts());
+
       this.portals = this.getHighlightedProducts();
       this.loaded = true;
     });
@@ -29,7 +34,10 @@ export default defineComponent({
     <h2 class="title">Nasze najlepsze portale!</h2>
     <section class="container" v-if="loaded">
       <div class="card" v-for="portal in portals" :key="portal.id">
-        <img :src="portal.img" :alt="portal.place" />
+        <img
+          :src="'/src/assets/brand/' + portal.place + '.png'"
+          :alt="portal.place"
+        />
         <div class="text">
           <h3>{{ portal.place }}</h3>
           <p>Cena: {{ portal.price }} zł</p>
