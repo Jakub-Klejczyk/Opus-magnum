@@ -35,7 +35,11 @@ export default defineComponent({
     <section class="container" v-if="loaded">
       <div class="card" v-for="portal in portals" :key="portal.id">
         <img
-          :src="'/src/assets/brand/' + portal.place + '.png'"
+          :src="
+            'https://portal-shop-project.netlify.app/assets/' +
+            portal.place +
+            '.png'
+          "
           :alt="portal.place"
         />
         <div class="text">
