@@ -13,12 +13,39 @@ import type Portal from "@/types/Portal";
 import router from "@/router";
 import type Msg from "../types/Msg";
 
+import Denmark from "../assets/brand/Denmark.png";
+import Fiordy from "../assets/brand/Fiordy.png";
+import Hawaje from "../assets/brand/Hawaje.png";
+import Irlandia from "../assets/brand/Irlandia.png";
+import Islandiapołudniowa from "../assets/brand/Islandia południowa.png";
+import Islandia from "../assets/brand/Islandia.png";
+import Kanada from "../assets/brand/Kanada.png";
+import Kilimandżaro from "../assets/brand/Kilimandżaro.png";
+import Norwegia from "../assets/brand/Norwegia.png";
+import NowaZelandia from "../assets/brand/Nowa Zelandia.png";
+import Szwajcaria from "../assets/brand/Szwajcaria.png";
+import Szwecja from "../assets/brand/Szwecja.png";
+
 const store = createStore({
   state: {
     currentUser: null as null | User,
     authIsReady: false,
     portals: [] as Portal[],
     portalsCart: [] as Portal[],
+    images: [
+      { place: Denmark },
+      { place: Kilimandżaro },
+      { place: Fiordy },
+      { place: Hawaje },
+      { place: Irlandia },
+      { place: Islandiapołudniowa },
+      { place: Islandia },
+      { place: Kanada },
+      { place: Norwegia },
+      { place: NowaZelandia },
+      { place: Szwajcaria },
+      { place: Szwecja },
+    ],
   },
   mutations: {
     setUser(state, user: User) {
@@ -83,17 +110,25 @@ const store = createStore({
         title: email.title,
       } as Msg);
     },
-    async getPortals({ commit }) {
+    async getPortals({ state, commit }) {
       const portals = await getDocs(portalsRef);
       let allPortals: Portal[] = [];
       portals.forEach((res) => {
         const portal = res.data();
+        let image;
+        for (let i = 0; i < state.images.length; i++) {
+          let img = state.images[i].place.substring(18);
+          img = img.slice(0, -4);
+          if (img.replace(/ +/g, "") == portal.place.replace(/ +/g, "")) {
+            image = state.images[i].place;
+          }
+        }
         allPortals.push({
           id: res.id,
           portal: portal.portal,
           place: portal.place,
           price: portal.price,
-          img: "/assets/" + portal.place + ".png",
+          img: image,
         });
       });
 
