@@ -193,6 +193,7 @@ nav {
       display: flex;
       align-items: center;
       justify-content: center;
+
       .link,
       &:last-child {
         color: white;
@@ -213,6 +214,9 @@ nav {
   }
   .active-container {
     display: flex;
+  }
+  .cart::after {
+    display: none;
   }
 }
 

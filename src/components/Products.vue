@@ -23,9 +23,16 @@ export default defineComponent({
     displayAll() {
       this.sortedPortals = this.portals;
     },
-    addToCart(id: string) {
+    addToCart(id: string, place: string) {
       const index = this.portals.findIndex((e) => e.id == id);
       this.setPortalsCart(this.portals[index]);
+
+      const item = document.querySelector(`#${place}`);
+      item?.classList.add("popup");
+
+      setTimeout(() => {
+        item?.classList.remove("popup");
+      }, 600);
     },
   },
   mounted() {
@@ -53,7 +60,9 @@ export default defineComponent({
           <h3>{{ portal.place }}</h3>
           <p>Cena: {{ portal.price }} zł</p>
         </div>
-        <button @click="addToCart(portal.id)">Dodaj do koszyka</button>
+        <button :id="portal.place" @click="addToCart(portal.id, portal.place)">
+          Dodaj do koszyka
+        </button>
       </div>
     </div>
   </section>

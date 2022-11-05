@@ -66,7 +66,6 @@ const store = createStore({
     removeDisableScroll() {
       const body: HTMLBodyElement | null = document.querySelector("body");
       body?.classList.remove("disable-scroll");
-      console.log(body);
     },
   },
   actions: {
