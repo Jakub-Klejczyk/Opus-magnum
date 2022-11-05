@@ -125,10 +125,10 @@ const store = createStore({
           for (let i = 0; i < state.images.length; i++) {
             let img = state.images[i].place.substring(15);
             img = img.slice(0, -4);
-            console.log(img);
+            //console.log(img);
 
             if (img.replace(/ +/g, "") == local.replace(/ +/g, "")) {
-              console.log(state.images[i]);
+              //console.log(state.images[i]);
 
               return state.images[i];
             }

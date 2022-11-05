@@ -32,6 +32,7 @@ export default defineComponent({
   mounted() {
     this.getPortals().then(() => {
       this.portals = this.getHighlightedProducts();
+      console.log(this.portals[0].img);
       this.loaded = true;
     });
   },

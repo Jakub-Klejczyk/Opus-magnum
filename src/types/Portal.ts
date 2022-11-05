@@ -3,7 +3,7 @@ interface Portal {
   portal: string;
   place: string;
   price: number;
-  img?: string;
+  img: string | undefined;
 }
 
 export default Portal;
