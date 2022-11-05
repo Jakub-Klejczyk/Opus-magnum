@@ -14,19 +14,18 @@ import router from "@/router";
 import type Msg from "../types/Msg";
 import { useRouter } from "vue-router";
 
-import Denmark from "../assets/brand/Denmark.png";
-import Fiordy from "../assets/brand/Fiordy.png";
-import Hawaje from "../assets/brand/Hawaje.png";
-import Irlandia from "../assets/brand/Irlandia.png";
-import Islandiapołudniowa from "../assets/brand/Islandia południowa.png";
-import Islandia from "../assets/brand/Islandia.png";
-import Kanada from "../assets/brand/Kanada.png";
-import Kilimandżaro from "../assets/brand/Kilimandżaro.png";
-import Norwegia from "../assets/brand/Norwegia.png";
-import NowaZelandia from "../assets/brand/Nowa Zelandia.png";
-import Szwajcaria from "../assets/brand/Szwajcaria.png";
-import Szwecja from "../assets/brand/Szwecja.png";
-import { faImages } from "@fortawesome/free-solid-svg-icons";
+import Denmark from "../assets/Denmark.png";
+import Fiordy from "../assets/Fiordy.png";
+import Hawaje from "../assets/Hawaje.png";
+import Irlandia from "../assets/Irlandia.png";
+import Islandiapołudniowa from "../assets/Islandia południowa.png";
+import Islandia from "../assets/Islandia.png";
+import Kanada from "../assets/Kanada.png";
+import Kilimandżaro from "../assets/Kilimandżaro.png";
+import Norwegia from "../assets/Norwegia.png";
+import NowaZelandia from "../assets/Nowa Zelandia.png";
+import Szwajcaria from "../assets/Szwajcaria.png";
+import Szwecja from "../assets/Szwecja.png";
 
 const store = createStore({
   state: {
@@ -124,7 +123,7 @@ const store = createStore({
 
         function getImg(local: string) {
           for (let i = 0; i < state.images.length; i++) {
-            let img = state.images[i].place.substring(18);
+            let img = state.images[i].place.substring(12);
             img = img.slice(0, -4);
             if (img.replace(/ +/g, "") == local.replace(/ +/g, "")) {
               return state.images[i];
