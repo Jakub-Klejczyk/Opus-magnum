@@ -3,20 +3,6 @@ import { defineComponent } from "vue";
 import { mapActions, mapGetters } from "vuex";
 import type Portal from "@/types/Portal";
 
-// import Denmark from "../assets/brand/Denmark.png";
-
-// import Fiordy from "../assets/brand/Fiordy.png";
-// import Hawaje from "../assets/brand/Hawaje.png";
-// import Irlandia from "../assets/brand/Irlandia.png";
-// import Islandiapołudniowa from "../assets/brand/Islandia południowa.png";
-// import Islandia from "../assets/brand/Islandia.png";
-// import Kanada from "../assets/brand/Kanada.png";
-// import Kilimandżaro from "../assets/brand/Kilimandżaro.png";
-// import Norwegia from "../assets/brand/Norwegia.png";
-// import NowaZelandia from "../assets/brand/Norwegia.png";
-// import Szwajcaria from "../assets/brand/Szwajcaria.png";
-// import Szwecja from "../assets/brand/Szwecja.png";
-
 export default defineComponent({
   name: "HighlightedProducts",
   data() {
@@ -32,7 +18,6 @@ export default defineComponent({
   mounted() {
     this.getPortals().then(() => {
       this.portals = this.getHighlightedProducts();
-      console.log(this.portals[0].img);
       this.loaded = true;
     });
   },

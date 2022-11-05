@@ -23,6 +23,9 @@ export default defineComponent({
       const sidebar: HTMLDivElement | null =
         document.querySelector(".container");
       sidebar?.classList.toggle("active-container");
+
+      const body: HTMLBodyElement | null = document.querySelector("body");
+      body?.classList.add("disable-scroll");
     },
   },
   computed: {

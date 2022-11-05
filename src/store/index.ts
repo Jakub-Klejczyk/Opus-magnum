@@ -17,7 +17,7 @@ import Denmark from "../assets/brand/Denmark-min.png";
 import Fiordy from "../assets/brand/Fiordy-min.png";
 import Hawaje from "../assets/brand/Hawaje-min.png";
 import Irlandia from "../assets/brand/Irlandia-min.png";
-import Islandiapołudniowa from "../assets/brand/Islandia południowa-min.png";
+import Japonia from "../assets/brand/Japonia-min.png";
 import Islandia from "../assets/brand/Islandia-min.png";
 import Kanada from "../assets/brand/Kanada-min.png";
 import Kilimandżaro from "../assets/brand/Kilimandżaro-min.png";
@@ -25,7 +25,6 @@ import Norwegia from "../assets/brand/Norwegia-min.png";
 import NowaZelandia from "../assets/brand/Nowa Zelandia-min.png";
 import Szwajcaria from "../assets/brand/Szwajcaria-min.png";
 import Szwecja from "../assets/brand/Szwecja-min.png";
-import { NO } from "@vue/shared";
 
 const store = createStore({
   state: {
@@ -33,27 +32,13 @@ const store = createStore({
     authIsReady: false,
     portals: [] as Portal[],
     portalsCart: [] as Portal[],
-    // images: [
-    //   { place: Denmark },
-    //   { place: Kilimandżaro },
-    //   { place: Fiordy },
-    //   { place: Hawaje },
-    //   { place: Irlandia },
-    //   { place: Islandiapołudniowa },
-    //   { place: Islandia },
-    //   { place: Kanada },
-    //   { place: Norwegia },
-    //   { place: NowaZelandia },
-    //   { place: Szwajcaria },
-    //   { place: Szwecja },
-    // ],
     images: [
       Denmark,
       Kilimandżaro,
       Fiordy,
       Hawaje,
       Irlandia,
-      Islandiapołudniowa,
+      Japonia,
       Islandia,
       Kanada,
       Norwegia,
@@ -81,6 +66,7 @@ const store = createStore({
     removeDisableScroll() {
       const body: HTMLBodyElement | null = document.querySelector("body");
       body?.classList.remove("disable-scroll");
+      console.log(body);
     },
   },
   actions: {
@@ -134,32 +120,11 @@ const store = createStore({
       let allPortals: Portal[] = [];
       portals.forEach((res) => {
         const portal = res.data();
-
-        // function getImg(local: string) {
-        //   for (let i = 0; i < state.images.length; i++) {
-        //     let img = state.images[i].place.substring(18);
-        //     img = img.slice(0, -8);
-        //     console.log(img);
-
-        //     if (img.replace(/ +/g, "") == local.replace(/ +/g, "")) {
-        //       console.log(state.images[i]);
-
-        //       return state.images[i].place;
-        //     }
-        //   }
-        // }
-
         function getImg(local: string) {
           for (let i = 0; i < state.images.length; i++) {
             if (state.images[i].indexOf(local) != -1) {
               return state.images[i];
             }
-
-            // if (img.replace(/ +/g, "") == local.replace(/ +/g, "")) {
-            //   console.log(state.images[i]);
-
-            //   return state.images[i];
-            // }
           }
         }
 
