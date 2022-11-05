@@ -12,20 +12,6 @@ import type User from "@/types/User";
 import type Portal from "@/types/Portal";
 import router from "@/router";
 import type Msg from "../types/Msg";
-import { useRouter } from "vue-router";
-
-import Denmark from "../../public/images/Denmark.png";
-import Fiordy from "../../public/images/Fiordy.png";
-import Hawaje from "../../public/images/Hawaje.png";
-import Irlandia from "../../public/images/Irlandia.png";
-import Islandiapołudniowa from "../../public/images/Islandia południowa.png";
-import Islandia from "../../public/images/Islandia.png";
-import Kanada from "../../public/images/Kanada.png";
-import Kilimandżaro from "../../public/images/Kilimandżaro.png";
-import Norwegia from "../../public/images/Norwegia.png";
-import NowaZelandia from "../../public/images/Nowa Zelandia.png";
-import Szwajcaria from "../../public/images/Szwajcaria.png";
-import Szwecja from "../../public/images/Szwecja.png";
 
 const store = createStore({
   state: {
@@ -33,20 +19,6 @@ const store = createStore({
     authIsReady: false,
     portals: [] as Portal[],
     portalsCart: [] as Portal[],
-    images: [
-      { place: Denmark },
-      { place: Kilimandżaro },
-      { place: Fiordy },
-      { place: Hawaje },
-      { place: Irlandia },
-      { place: Islandiapołudniowa },
-      { place: Islandia },
-      { place: Kanada },
-      { place: Norwegia },
-      { place: NowaZelandia },
-      { place: Szwajcaria },
-      { place: Szwecja },
-    ],
   },
   mutations: {
     setUser(state, user: User) {
@@ -121,26 +93,26 @@ const store = createStore({
       portals.forEach((res) => {
         const portal = res.data();
 
-        function getImg(local: string) {
-          for (let i = 0; i < state.images.length; i++) {
-            let img = state.images[i].place.substring(15);
-            img = img.slice(0, -4);
-            //console.log(img);
+        // function getImg(local: string) {
+        //   for (let i = 0; i < state.images.length; i++) {
+        //     let img = state.images[i].place.substring(15);
+        //     img = img.slice(0, -4);
+        //     //console.log(img);
 
-            if (img.replace(/ +/g, "") == local.replace(/ +/g, "")) {
-              //console.log(state.images[i]);
+        //     if (img.replace(/ +/g, "") == local.replace(/ +/g, "")) {
+        //       //console.log(state.images[i]);
 
-              return state.images[i];
-            }
-          }
-        }
+        //       return state.images[i];
+        //     }
+        //   }
+        // }
 
         allPortals.push({
           id: res.id,
           portal: portal.portal,
           place: portal.place,
           price: portal.price,
-          img: getImg(portal.place)?.place,
+          img: "../../public/" + portal.place + ".png",
         });
       });
 
