@@ -25,6 +25,7 @@ import Norwegia from "../assets/brand/Norwegia-min.png";
 import NowaZelandia from "../assets/brand/Nowa Zelandia-min.png";
 import Szwajcaria from "../assets/brand/Szwajcaria-min.png";
 import Szwecja from "../assets/brand/Szwecja-min.png";
+import { NO } from "@vue/shared";
 
 const store = createStore({
   state: {
@@ -32,19 +33,33 @@ const store = createStore({
     authIsReady: false,
     portals: [] as Portal[],
     portalsCart: [] as Portal[],
+    // images: [
+    //   { place: Denmark },
+    //   { place: Kilimandżaro },
+    //   { place: Fiordy },
+    //   { place: Hawaje },
+    //   { place: Irlandia },
+    //   { place: Islandiapołudniowa },
+    //   { place: Islandia },
+    //   { place: Kanada },
+    //   { place: Norwegia },
+    //   { place: NowaZelandia },
+    //   { place: Szwajcaria },
+    //   { place: Szwecja },
+    // ],
     images: [
-      { place: Denmark },
-      { place: Kilimandżaro },
-      { place: Fiordy },
-      { place: Hawaje },
-      { place: Irlandia },
-      { place: Islandiapołudniowa },
-      { place: Islandia },
-      { place: Kanada },
-      { place: Norwegia },
-      { place: NowaZelandia },
-      { place: Szwajcaria },
-      { place: Szwecja },
+      Denmark,
+      Kilimandżaro,
+      Fiordy,
+      Hawaje,
+      Irlandia,
+      Islandiapołudniowa,
+      Islandia,
+      Kanada,
+      Norwegia,
+      NowaZelandia,
+      Szwajcaria,
+      Szwecja,
     ],
   },
   mutations: {
@@ -120,17 +135,31 @@ const store = createStore({
       portals.forEach((res) => {
         const portal = res.data();
 
+        // function getImg(local: string) {
+        //   for (let i = 0; i < state.images.length; i++) {
+        //     let img = state.images[i].place.substring(18);
+        //     img = img.slice(0, -8);
+        //     console.log(img);
+
+        //     if (img.replace(/ +/g, "") == local.replace(/ +/g, "")) {
+        //       console.log(state.images[i]);
+
+        //       return state.images[i].place;
+        //     }
+        //   }
+        // }
+
         function getImg(local: string) {
           for (let i = 0; i < state.images.length; i++) {
-            let img = state.images[i].place.substring(18);
-            img = img.slice(0, -8);
-            console.log(img);
-
-            if (img.replace(/ +/g, "") == local.replace(/ +/g, "")) {
-              console.log(state.images[i]);
-
-              return state.images[i].place;
+            if (state.images[i].indexOf(local) != -1) {
+              return state.images[i];
             }
+
+            // if (img.replace(/ +/g, "") == local.replace(/ +/g, "")) {
+            //   console.log(state.images[i]);
+
+            //   return state.images[i];
+            // }
           }
         }
 
