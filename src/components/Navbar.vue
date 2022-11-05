@@ -27,6 +27,11 @@ export default defineComponent({
       const body: HTMLBodyElement | null = document.querySelector("body");
       body?.classList.add("disable-scroll");
     },
+    onClick() {
+      this.logOut();
+      this.removeDisableScroll();
+      console.log("clicked");
+    },
   },
   computed: {
     countCart() {
@@ -76,11 +81,7 @@ export default defineComponent({
             >Koszyk</RouterLink
           >
         </li>
-        <li
-          @click="logOut, removeDisableScroll()"
-          class="nav-elem logout"
-          v-if="getUser()"
-        >
+        <li @click="onClick()" class="nav-elem logout" v-if="getUser()">
           Wyloguj
         </li>
       </ul>
