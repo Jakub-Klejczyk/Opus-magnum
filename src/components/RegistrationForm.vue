@@ -29,6 +29,7 @@ export default defineComponent({
       this.errorEmail = "";
       this.errorPass = "";
       this.errorPass2 = "";
+      this.errorTerms = "";
 
       if (!this.email) {
         this.errorEmail = "Nie podano adresu email";
