@@ -48,7 +48,6 @@ const store = createStore({
       { place: Szwajcaria },
       { place: Szwecja },
     ],
-    imgs: [Kilimandżaro, Denmark, Fiordy, Hawaje],
   },
   mutations: {
     setUser(state, user: User) {
@@ -122,26 +121,23 @@ const store = createStore({
       let allPortals: Portal[] = [];
       portals.forEach((res) => {
         const portal = res.data();
-        let image;
 
         function getImg(local: string) {
           for (let i = 0; i < state.images.length; i++) {
             let img = state.images[i].place.substring(18);
             img = img.slice(0, -4);
             if (img.replace(/ +/g, "") == local.replace(/ +/g, "")) {
-              image = state.images[i].place;
+              return state.images[i].place;
             }
           }
         }
-
-        getImg(portal.place);
 
         allPortals.push({
           id: res.id,
           portal: portal.portal,
           place: portal.place,
           price: portal.price,
-          img: image,
+          img: getImg(portal.place),
         });
       });
 
