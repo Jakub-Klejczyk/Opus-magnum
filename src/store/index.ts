@@ -127,7 +127,7 @@ const store = createStore({
             let img = state.images[i].place.substring(18);
             img = img.slice(0, -4);
             if (img.replace(/ +/g, "") == local.replace(/ +/g, "")) {
-              return state.images[i].place;
+              return state.images[i];
             }
           }
         }
@@ -137,7 +137,7 @@ const store = createStore({
           portal: portal.portal,
           place: portal.place,
           price: portal.price,
-          img: getImg(portal.place),
+          img: getImg(portal.place)?.place,
         });
       });
 
