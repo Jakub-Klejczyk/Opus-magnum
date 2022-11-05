@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-import { mapActions } from "vuex";
+import { mapActions, mapMutations } from "vuex";
 import { RouterLink } from "vue-router";
 import GoogleButton from "./GoogleButton.vue";
 
@@ -19,6 +19,7 @@ export default defineComponent({
   },
   methods: {
     ...mapActions(["logUser"]),
+    ...mapMutations(["removeDisableScroll"]),
     async onSubmit() {
       this.errorEmail = "";
       this.errorPass = "";
@@ -66,18 +67,25 @@ export default defineComponent({
           <p class="error">{{ errorPass }}</p>
         </div>
         <div class="form-elem">
-          <input class="btn" type="submit" value="Zaloguj się" />
+          <input
+            class="btn"
+            type="submit"
+            value="Zaloguj się"
+            @click="removeDisableScroll()"
+          />
         </div>
       </form>
     </div>
     <div class="google-auth">
-      <GoogleButton />
+      <GoogleButton @click="removeDisableScroll()" />
     </div>
     <div class="other-actions">
       <RouterLink class="link" to="/registration"
         >Jesteś nowym klientem?</RouterLink
       >
-      <RouterLink class="link" to="/">Przejdź do strony sklepu</RouterLink>
+      <RouterLink class="link" to="/" @click="removeDisableScroll()"
+        >Przejdź do strony sklepu</RouterLink
+      >
     </div>
   </div>
 </template>

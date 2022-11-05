@@ -13,6 +13,10 @@ body {
   overflow-x: hidden;
 }
 
+.disable-scroll {
+  overflow: hidden;
+}
+
 $dark-purple: rgba(53, 47, 85, 1);
 $light-purple: rgba(95, 82, 164, 1);
 $white: rgba(245, 249, 252, 1);

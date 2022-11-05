@@ -12,6 +12,7 @@ import type User from "@/types/User";
 import type Portal from "@/types/Portal";
 import router from "@/router";
 import type Msg from "../types/Msg";
+import { useRouter } from "vue-router";
 
 import Denmark from "../assets/brand/Denmark.png";
 import Fiordy from "../assets/brand/Fiordy.png";
@@ -25,6 +26,7 @@ import Norwegia from "../assets/brand/Norwegia.png";
 import NowaZelandia from "../assets/brand/Nowa Zelandia.png";
 import Szwajcaria from "../assets/brand/Szwajcaria.png";
 import Szwecja from "../assets/brand/Szwecja.png";
+import { faImages } from "@fortawesome/free-solid-svg-icons";
 
 const store = createStore({
   state: {
@@ -46,6 +48,7 @@ const store = createStore({
       { place: Szwajcaria },
       { place: Szwecja },
     ],
+    imgs: [Kilimandżaro, Denmark, Fiordy, Hawaje],
   },
   mutations: {
     setUser(state, user: User) {
@@ -62,6 +65,10 @@ const store = createStore({
     },
     delFromCart(state, portal) {
       state.portalsCart = portal;
+    },
+    removeDisableScroll() {
+      const body: HTMLBodyElement | null = document.querySelector("body");
+      body?.classList.remove("disable-scroll");
     },
   },
   actions: {
@@ -116,13 +123,19 @@ const store = createStore({
       portals.forEach((res) => {
         const portal = res.data();
         let image;
-        for (let i = 0; i < state.images.length; i++) {
-          let img = state.images[i].place.substring(18);
-          img = img.slice(0, -4);
-          if (img.replace(/ +/g, "") == portal.place.replace(/ +/g, "")) {
-            image = state.images[i].place;
+
+        function getImg(local: string) {
+          for (let i = 0; i < state.images.length; i++) {
+            let img = state.images[i].place.substring(18);
+            img = img.slice(0, -4);
+            if (img.replace(/ +/g, "") == local.replace(/ +/g, "")) {
+              image = state.images[i].place;
+            }
           }
         }
+
+        getImg(portal.place);
+
         allPortals.push({
           id: res.id,
           portal: portal.portal,
@@ -135,6 +148,7 @@ const store = createStore({
       commit("setPortals", allPortals);
     },
   },
+
   getters: {
     getHighlightedProducts(store): Portal[] {
       let highlighterPortal: Portal[] = [];

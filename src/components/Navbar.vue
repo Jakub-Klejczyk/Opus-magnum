@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { RouterLink } from "vue-router";
-import { mapActions, mapGetters } from "vuex";
+import { mapActions, mapGetters, mapMutations } from "vuex";
 import store from "../store/index";
 
 export default defineComponent({
@@ -14,6 +14,7 @@ export default defineComponent({
   methods: {
     ...mapActions(["logOut"]),
     ...mapGetters(["getUser"]),
+    ...mapMutations(["removeDisableScroll"]),
 
     toggleSidebar() {
       const hamburger: SVGElement | null = document.querySelector(".hamburger");
@@ -22,9 +23,6 @@ export default defineComponent({
       const sidebar: HTMLDivElement | null =
         document.querySelector(".container");
       sidebar?.classList.toggle("active-container");
-
-      const body: HTMLBodyElement | null = document.querySelector("body");
-      body?.classList.toggle("disable-scroll");
     },
   },
   computed: {
@@ -47,13 +45,19 @@ export default defineComponent({
 
       <ul class="container">
         <li class="nav-elem">
-          <RouterLink class="link" to="/">Strona główna</RouterLink>
+          <RouterLink class="link" to="/" @click="removeDisableScroll()"
+            >Strona główna</RouterLink
+          >
         </li>
         <li class="nav-elem">
-          <RouterLink class="link" to="/products">Portale</RouterLink>
+          <RouterLink class="link" to="/products" @click="removeDisableScroll()"
+            >Portale</RouterLink
+          >
         </li>
         <li class="nav-elem">
-          <RouterLink class="link" to="/terms">Regulamin</RouterLink>
+          <RouterLink class="link" to="/terms" @click="removeDisableScroll()"
+            >Regulamin</RouterLink
+          >
         </li>
         <li class="nav-elem" v-if="!getUser()">
           <RouterLink class="link" to="/login">Logowanie</RouterLink>
@@ -65,9 +69,15 @@ export default defineComponent({
           :class="countCart > 0 ? 'nav-elem cart' : 'nav-elem'"
           :data-count="countCart"
         >
-          <RouterLink class="link" to="/cart">Koszyk</RouterLink>
+          <RouterLink class="link" to="/cart" @click="removeDisableScroll()"
+            >Koszyk</RouterLink
+          >
         </li>
-        <li @click="logOut" class="nav-elem logout" v-if="getUser()">
+        <li
+          @click="logOut, removeDisableScroll()"
+          class="nav-elem logout"
+          v-if="getUser()"
+        >
           Wyloguj
         </li>
       </ul>
@@ -156,12 +166,6 @@ nav {
   z-index: 2;
   margin-top: 2rem;
   margin-right: 2rem;
-}
-
-.disable-scroll {
-  margin: 0;
-  height: 200%;
-  overflow-y: hidden;
 }
 
 @media (max-width: 1000px) {
